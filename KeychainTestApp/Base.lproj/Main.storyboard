@@ -37,7 +37,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="key value" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q96-Si-hT9">
-                                <rect key="frame" x="118" y="205" width="229" height="49"/>
+                                <rect key="frame" x="119" y="270" width="229" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
@@ -58,8 +58,16 @@
                                     <action selector="addKeyButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lMy-Le-9pN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRY-Ja-LgP">
+                                <rect key="frame" x="27" y="216" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add &gt; 5s"/>
+                                <connections>
+                                    <action selector="addKeyAfterFiveSecondsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="meK-0l-f0f"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k54-ZH-wsM">
-                                <rect key="frame" x="30" y="214" width="54" height="30"/>
+                                <rect key="frame" x="31" y="279" width="54" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Get Key"/>
                                 <connections>
@@ -67,16 +75,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcO-OP-Mh2">
-                                <rect key="frame" x="28" y="288" width="58" height="30"/>
+                                <rect key="frame" x="29" y="353" width="59" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="5s delay"/>
+                                <state key="normal" title="Get &gt; 5s"/>
                                 <connections>
                                     <action selector="getKeyAfterFiveSecondsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qOl-LP-B3c"/>
-                                    <action selector="getKeyButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ju7-AZ-l1L"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmd-T8-Eyi">
-                                <rect key="frame" x="38" y="350" width="39" height="30"/>
+                                <rect key="frame" x="39" y="415" width="39" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Reset"/>
                                 <connections>
@@ -95,11 +102,27 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Id-e4-llW">
-                                <rect key="frame" x="38" y="409" width="39" height="30"/>
+                                <rect key="frame" x="39" y="474" width="39" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Clean"/>
                                 <connections>
                                     <action selector="cleanButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4eM-Bz-wZu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxa-M5-PTg">
+                                <rect key="frame" x="282" y="28" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Stop Music"/>
+                                <connections>
+                                    <action selector="stopMusicButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r0a-KQ-060"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6e-4l-nOV">
+                                <rect key="frame" x="16" y="28" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play Music"/>
+                                <connections>
+                                    <action selector="playMusicButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KAJ-Yg-BI8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -113,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-135" y="90"/>
+            <point key="canvasLocation" x="-135.19999999999999" y="89.505247376311857"/>
         </scene>
     </scenes>
 </document>

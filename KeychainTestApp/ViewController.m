@@ -10,6 +10,7 @@
 #import "BBCiPCryptoKeyGeneration.h"
 #import "KeychainItemWrapper.h"
 #import "JaysonKeychainWrapper.h"
+#import "AudioPlayer.h"
 
 const size_t kKeyLength = 64;
 NSString * const kKeychainIdentifier = @"uk.co.bbc.KeychainTestApp";
@@ -25,6 +26,7 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UILabel *getKeyResultLabel;
 @property (strong) NSData *currentKeyData;
 @property KeychainType keychainType;
+@property (strong) AudioPlayer *audioPlayer;
 @end
 
 @implementation ViewController
@@ -37,6 +39,16 @@ typedef enum : NSUInteger {
 
 #pragma mark -
 #pragma mark UI Actions
+- (IBAction)playMusicButtonPressed:(id)sender {
+    NSString *birdSongPath = [[NSBundle mainBundle] pathForResource:@"Exotic-birds-chirping" ofType:@"mp3"];
+    NSURL *birdSongURL = [NSURL URLWithString:birdSongPath];
+    _audioPlayer = [[AudioPlayer alloc] initWithURL:birdSongURL];
+    [_audioPlayer play];
+}
+
+- (IBAction)stopMusicButtonPressed:(id)sender {
+    [_audioPlayer stop];
+}
 
 - (IBAction)newKeyButtonPressed:(id)sender {
     _currentKeyData = [[[BBCiPCryptoKeyGeneration alloc] init] randomDataOfLength:kKeyLength];
@@ -53,8 +65,13 @@ typedef enum : NSUInteger {
     _getKeyResultLabel.text = [NSString stringWithFormat:@"%@", keyData];
 }
 
+- (IBAction)addKeyAfterFiveSecondsButtonPressed:(id)sender {
+    sleep(5);
+    [self addKeyButtonPressed:sender];
+}
+
 - (IBAction)getKeyAfterFiveSecondsButtonPressed:(id)sender {
-    sleep(10);
+    sleep(5);
     [self getKeyButtonPressed:sender];
 }
 
