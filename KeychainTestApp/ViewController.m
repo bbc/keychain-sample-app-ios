@@ -66,13 +66,11 @@ typedef enum : NSUInteger {
 }
 
 - (IBAction)addKeyAfterFiveSecondsButtonPressed:(id)sender {
-    sleep(5);
-    [self addKeyButtonPressed:sender];
+    [self performSelectorInBackground:@selector(delayedAdd) withObject:nil];
 }
 
 - (IBAction)getKeyAfterFiveSecondsButtonPressed:(id)sender {
-    sleep(5);
-    [self getKeyButtonPressed:sender];
+    [self performSelectorInBackground:@selector(delayedGet) withObject:nil];
 }
 
 - (IBAction)resetButtonPressed:(id)sender {
@@ -98,6 +96,16 @@ typedef enum : NSUInteger {
 
 #pragma mark -
 #pragma mark Private Methods
+
+- (void)delayedAdd {
+    sleep(60);
+    [self performSelectorOnMainThread:@selector(addKeyButtonPressed:) withObject:nil waitUntilDone:NO];
+}
+
+- (void)delayedGet {
+    sleep(60);
+    [self performSelectorOnMainThread:@selector(getKeyButtonPressed:) withObject:nil waitUntilDone:NO];
+}
 
 - (id<Keychain>)keychain {
     if (_keychainType == KeychainTypeAppleWrapper) {
