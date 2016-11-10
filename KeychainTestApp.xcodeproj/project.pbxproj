@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AEF2DE8C1DD360890062B0E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DE8B1DD360890062B0E2 /* main.m */; };
+		AEF2DE8F1DD360890062B0E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DE8E1DD360890062B0E2 /* AppDelegate.m */; };
+		AEF2DE921DD360890062B0E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DE911DD360890062B0E2 /* ViewController.m */; };
+		AEF2DE951DD360890062B0E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEF2DE931DD360890062B0E2 /* Main.storyboard */; };
+		AEF2DE971DD360890062B0E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF2DE961DD360890062B0E2 /* Assets.xcassets */; };
+		AEF2DE9A1DD360890062B0E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEF2DE981DD360890062B0E2 /* LaunchScreen.storyboard */; };
+		AEF2DEA51DD360890062B0E2 /* KeychainTestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DEA41DD360890062B0E2 /* KeychainTestAppTests.m */; };
+		AEF2DEB11DD361A80062B0E2 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DEB01DD361A80062B0E2 /* KeychainItemWrapper.m */; };
+		AEF2DEB41DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DEB31DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m */; };
+		AEF2DEB81DD4790E0062B0E2 /* JaysonKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DEB71DD4790E0062B0E2 /* JaysonKeychainWrapper.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AEF2DEA11DD360890062B0E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AEF2DE7F1DD360890062B0E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AEF2DE861DD360890062B0E2;
+			remoteInfo = KeychainTestApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AEF2DE871DD360890062B0E2 /* KeychainTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeychainTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF2DE8B1DD360890062B0E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AEF2DE8D1DD360890062B0E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AEF2DE8E1DD360890062B0E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AEF2DE901DD360890062B0E2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		AEF2DE911DD360890062B0E2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AEF2DE941DD360890062B0E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AEF2DE961DD360890062B0E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AEF2DE991DD360890062B0E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AEF2DE9B1DD360890062B0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEF2DEA01DD360890062B0E2 /* KeychainTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeychainTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF2DEA41DD360890062B0E2 /* KeychainTestAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainTestAppTests.m; sourceTree = "<group>"; };
+		AEF2DEA61DD360890062B0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEF2DEAF1DD361A80062B0E2 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		AEF2DEB01DD361A80062B0E2 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		AEF2DEB21DD362070062B0E2 /* BBCiPCryptoKeyGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCiPCryptoKeyGeneration.h; sourceTree = "<group>"; };
+		AEF2DEB31DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCiPCryptoKeyGeneration.m; sourceTree = "<group>"; };
+		AEF2DEB51DD475830062B0E2 /* Keychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Keychain.h; sourceTree = "<group>"; };
+		AEF2DEB61DD4790E0062B0E2 /* JaysonKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JaysonKeychainWrapper.h; sourceTree = "<group>"; };
+		AEF2DEB71DD4790E0062B0E2 /* JaysonKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JaysonKeychainWrapper.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AEF2DE841DD360890062B0E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEF2DE9D1DD360890062B0E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AEF2DE7E1DD360890062B0E2 = {
+			isa = PBXGroup;
+			children = (
+				AEF2DE891DD360890062B0E2 /* KeychainTestApp */,
+				AEF2DEA31DD360890062B0E2 /* KeychainTestAppTests */,
+				AEF2DE881DD360890062B0E2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AEF2DE881DD360890062B0E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEF2DE871DD360890062B0E2 /* KeychainTestApp.app */,
+				AEF2DEA01DD360890062B0E2 /* KeychainTestAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AEF2DE891DD360890062B0E2 /* KeychainTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				AEF2DE8D1DD360890062B0E2 /* AppDelegate.h */,
+				AEF2DE8E1DD360890062B0E2 /* AppDelegate.m */,
+				AEF2DE901DD360890062B0E2 /* ViewController.h */,
+				AEF2DE911DD360890062B0E2 /* ViewController.m */,
+				AEF2DE931DD360890062B0E2 /* Main.storyboard */,
+				AEF2DE961DD360890062B0E2 /* Assets.xcassets */,
+				AEF2DE981DD360890062B0E2 /* LaunchScreen.storyboard */,
+				AEF2DE9B1DD360890062B0E2 /* Info.plist */,
+				AEF2DEAF1DD361A80062B0E2 /* KeychainItemWrapper.h */,
+				AEF2DEB01DD361A80062B0E2 /* KeychainItemWrapper.m */,
+				AEF2DEB21DD362070062B0E2 /* BBCiPCryptoKeyGeneration.h */,
+				AEF2DEB31DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m */,
+				AEF2DE8A1DD360890062B0E2 /* Supporting Files */,
+				AEF2DEB51DD475830062B0E2 /* Keychain.h */,
+				AEF2DEB61DD4790E0062B0E2 /* JaysonKeychainWrapper.h */,
+				AEF2DEB71DD4790E0062B0E2 /* JaysonKeychainWrapper.m */,
+			);
+			path = KeychainTestApp;
+			sourceTree = "<group>";
+		};
+		AEF2DE8A1DD360890062B0E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AEF2DE8B1DD360890062B0E2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AEF2DEA31DD360890062B0E2 /* KeychainTestAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				AEF2DEA41DD360890062B0E2 /* KeychainTestAppTests.m */,
+				AEF2DEA61DD360890062B0E2 /* Info.plist */,
+			);
+			path = KeychainTestAppTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AEF2DE861DD360890062B0E2 /* KeychainTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AEF2DEA91DD360890062B0E2 /* Build configuration list for PBXNativeTarget "KeychainTestApp" */;
+			buildPhases = (
+				AEF2DE831DD360890062B0E2 /* Sources */,
+				AEF2DE841DD360890062B0E2 /* Frameworks */,
+				AEF2DE851DD360890062B0E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeychainTestApp;
+			productName = KeychainTestApp;
+			productReference = AEF2DE871DD360890062B0E2 /* KeychainTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AEF2DE9F1DD360890062B0E2 /* KeychainTestAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AEF2DEAC1DD360890062B0E2 /* Build configuration list for PBXNativeTarget "KeychainTestAppTests" */;
+			buildPhases = (
+				AEF2DE9C1DD360890062B0E2 /* Sources */,
+				AEF2DE9D1DD360890062B0E2 /* Frameworks */,
+				AEF2DE9E1DD360890062B0E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AEF2DEA21DD360890062B0E2 /* PBXTargetDependency */,
+			);
+			name = KeychainTestAppTests;
+			productName = KeychainTestAppTests;
+			productReference = AEF2DEA01DD360890062B0E2 /* KeychainTestAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AEF2DE7F1DD360890062B0E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = BBC;
+				TargetAttributes = {
+					AEF2DE861DD360890062B0E2 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = PPH9EJ7977;
+						ProvisioningStyle = Automatic;
+					};
+					AEF2DE9F1DD360890062B0E2 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = PPH9EJ7977;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AEF2DE861DD360890062B0E2;
+					};
+				};
+			};
+			buildConfigurationList = AEF2DE821DD360890062B0E2 /* Build configuration list for PBXProject "KeychainTestApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AEF2DE7E1DD360890062B0E2;
+			productRefGroup = AEF2DE881DD360890062B0E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AEF2DE861DD360890062B0E2 /* KeychainTestApp */,
+				AEF2DE9F1DD360890062B0E2 /* KeychainTestAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AEF2DE851DD360890062B0E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEF2DE9A1DD360890062B0E2 /* LaunchScreen.storyboard in Resources */,
+				AEF2DE971DD360890062B0E2 /* Assets.xcassets in Resources */,
+				AEF2DE951DD360890062B0E2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEF2DE9E1DD360890062B0E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AEF2DE831DD360890062B0E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEF2DEB11DD361A80062B0E2 /* KeychainItemWrapper.m in Sources */,
+				AEF2DE921DD360890062B0E2 /* ViewController.m in Sources */,
+				AEF2DE8F1DD360890062B0E2 /* AppDelegate.m in Sources */,
+				AEF2DEB81DD4790E0062B0E2 /* JaysonKeychainWrapper.m in Sources */,
+				AEF2DEB41DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m in Sources */,
+				AEF2DE8C1DD360890062B0E2 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEF2DE9C1DD360890062B0E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEF2DEA51DD360890062B0E2 /* KeychainTestAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AEF2DEA21DD360890062B0E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AEF2DE861DD360890062B0E2 /* KeychainTestApp */;
+			targetProxy = AEF2DEA11DD360890062B0E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AEF2DE931DD360890062B0E2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AEF2DE941DD360890062B0E2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AEF2DE981DD360890062B0E2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AEF2DE991DD360890062B0E2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AEF2DEA71DD360890062B0E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AEF2DEA81DD360890062B0E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AEF2DEAA1DD360890062B0E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = PPH9EJ7977;
+				INFOPLIST_FILE = KeychainTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bbc.KeychainTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AEF2DEAB1DD360890062B0E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = PPH9EJ7977;
+				INFOPLIST_FILE = KeychainTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bbc.KeychainTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		AEF2DEAD1DD360890062B0E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = PPH9EJ7977;
+				INFOPLIST_FILE = KeychainTestAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bbc.KeychainTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeychainTestApp.app/KeychainTestApp";
+			};
+			name = Debug;
+		};
+		AEF2DEAE1DD360890062B0E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = PPH9EJ7977;
+				INFOPLIST_FILE = KeychainTestAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bbc.KeychainTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeychainTestApp.app/KeychainTestApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AEF2DE821DD360890062B0E2 /* Build configuration list for PBXProject "KeychainTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEF2DEA71DD360890062B0E2 /* Debug */,
+				AEF2DEA81DD360890062B0E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AEF2DEA91DD360890062B0E2 /* Build configuration list for PBXNativeTarget "KeychainTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEF2DEAA1DD360890062B0E2 /* Debug */,
+				AEF2DEAB1DD360890062B0E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AEF2DEAC1DD360890062B0E2 /* Build configuration list for PBXNativeTarget "KeychainTestAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEF2DEAD1DD360890062B0E2 /* Debug */,
+				AEF2DEAE1DD360890062B0E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AEF2DE7F1DD360890062B0E2 /* Project object */;
+}
