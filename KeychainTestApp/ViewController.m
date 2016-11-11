@@ -27,6 +27,7 @@ typedef enum : NSUInteger {
 @property (strong) NSData *currentKeyData;
 @property KeychainType keychainType;
 @property (strong) AudioPlayer *audioPlayer;
+@property (strong) dispatch_queue_t queue;
 @end
 
 @implementation ViewController
@@ -34,6 +35,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     _keychainType = KeychainTypeAppleWrapper;
+    _queue = dispatch_queue_create("bg_queue", NULL);
     [self cleanUp];
 }
 
@@ -56,13 +58,11 @@ typedef enum : NSUInteger {
 }
 
 - (IBAction)addKeyButtonPressed:(id)sender {
-    OSStatus result = [[self keychain] setObject:_currentKeyData forKey:(__bridge id)kSecValueData];
-    _addKeyResultLabel.text = [NSString stringWithFormat:@"%d", result];
+    [self add];
 }
 
 - (IBAction)getKeyButtonPressed:(id)sender {
-    NSData *keyData = [[self keychain] objectForKey:(__bridge id)kSecValueData];
-    _getKeyResultLabel.text = [NSString stringWithFormat:@"%@", keyData];
+    [self get];
 }
 
 - (IBAction)addKeyAfterFiveSecondsButtonPressed:(id)sender {
@@ -97,14 +97,34 @@ typedef enum : NSUInteger {
 #pragma mark -
 #pragma mark Private Methods
 
+- (void)add {
+    dispatch_async(_queue, ^{
+        OSStatus result = [[self keychain] setObject:_currentKeyData forKey:(__bridge id)kSecValueData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _addKeyResultLabel.text = [NSString stringWithFormat:@"%d", result];
+        });
+    });
+}
+
+- (void)get {
+    dispatch_async(_queue, ^{
+        NSData *keyData = [[self keychain] objectForKey:(__bridge id)kSecValueData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _getKeyResultLabel.text = [NSString stringWithFormat:@"%@", keyData];
+        });
+    });
+}
+
 - (void)delayedAdd {
-    sleep(60);
-    [self performSelectorOnMainThread:@selector(addKeyButtonPressed:) withObject:nil waitUntilDone:NO];
+    dispatch_async(_queue, ^{
+        
+    });
 }
 
 - (void)delayedGet {
-    sleep(60);
-    [self performSelectorOnMainThread:@selector(getKeyButtonPressed:) withObject:nil waitUntilDone:NO];
+    dispatch_async(_queue, ^{
+        
+    });
 }
 
 - (id<Keychain>)keychain {
