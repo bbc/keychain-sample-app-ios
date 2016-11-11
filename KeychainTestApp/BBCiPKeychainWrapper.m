@@ -8,12 +8,16 @@
 
 #import "BBCiPKeychainWrapper.h"
 
+@interface BBCiPKeychainWrapper ()
+@property (strong) NSString *identifier;
+@end
+
 @implementation BBCiPKeychainWrapper
 
 - (id)initWithIdentifier:(NSString *)identifier accessGroup:(NSString *)accessGroup {
     self = [super init];
     if (self) {
-        
+        _identifier = identifier;
     }
     return self;
 }
@@ -28,6 +32,28 @@
 
 - (void)resetKeychainItem {
     
+}
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (NSString*)getPasswordForIdentifier:(NSString*)identifier {
+    return nil;
+}
+
+- (void)savePasswordForIdentifier:(NSString*)identifier password:(NSString*)item {
+    NSMutableDictionary *keychainItem = [NSMutableDictionary dictionary];
+    
+    keychainItem[(__bridge id)kSecClass] = (__bridge id)kSecClassGenericPassword;
+    keychainItem[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleWhenUnlocked;
+    keychainItem[(__bridge id)kSecAttrGeneric] = identifier;
+    
+    if(!(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr)) {
+        keychainItem[(__bridge id)kSecValueData] = item;
+        
+        OSStatus sts = SecItemAdd((__bridge CFDictionaryRef)keychainItem, NULL);
+        NSLog(@"Error Code: %d", (int)sts);
+    }
 }
 
 @end
