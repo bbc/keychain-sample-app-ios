@@ -43,31 +43,11 @@
 - (NSString*)passwordForIdentifier:(NSString*)identifier {
     
     NSString *password = nil;
-//
-//    NSMutableDictionary *keychainItem = [NSMutableDictionary dictionary];
-//    
-//    keychainItem[(__bridge id)kSecClass] = (__bridge id)kSecClassGenericPassword;
-//    keychainItem[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleWhenUnlocked;
-//    keychainItem[(__bridge id)kSecAttrGeneric] = identifier;
-//    
-//    if(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr) {
-//        NSMutableDictionary *attributesToUpdate = [NSMutableDictionary dictionary];
-//        attributesToUpdate[(__bridge id)kSecValueData] = [password dataUsingEncoding:NSUTF8StringEncoding];
-//        
-//        OSStatus sts = SecItemUpdate((__bridge CFDictionaryRef)keychainItem, (__bridge CFDictionaryRef)attributesToUpdate);
-//        NSLog(@"Error Code: %d", (int)sts);
-//    }
-
-    //Let's create an empty mutable dictionary:
     NSMutableDictionary *keychainItem = [NSMutableDictionary dictionary];
-    
-    //Populate it with the data and the attributes we want to use.
     
     keychainItem[(__bridge id)kSecClass] = (__bridge id)kSecClassGenericPassword;
     keychainItem[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleWhenUnlocked;
     keychainItem[(__bridge id)kSecAttrGeneric] = identifier;
-    
-    //Check if this keychain item already exists.
     
     keychainItem[(__bridge id)kSecReturnData] = (__bridge id)kCFBooleanTrue;
     keychainItem[(__bridge id)kSecReturnAttributes] = (__bridge id)kCFBooleanTrue;
@@ -98,7 +78,7 @@
     keychainItem[(__bridge id)kSecAttrGeneric] = identifier;
     
     if(!(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr)) {
-        keychainItem[(__bridge id)kSecValueData] = [item dataUsingEncoding:NSUTF8StringEncoding];
+        keychainItem[(__bridge id)kSecValueData] = [@"YO" dataUsingEncoding:NSUTF8StringEncoding];
         
         status = SecItemAdd((__bridge CFDictionaryRef)keychainItem, NULL);
         NSLog(@"Error Code: %d", (int)status);
