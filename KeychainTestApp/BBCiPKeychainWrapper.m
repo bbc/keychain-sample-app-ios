@@ -1,14 +1,14 @@
 //
-//  JaysonKeychainWrapper.m
+//  BBCiPKeychainWrapper.m
 //  KeychainTestApp
 //
 //  Created by Jayson Turner on 10/11/2016.
 //  Copyright © 2016 BBC. All rights reserved.
 //
 
-#import "JaysonKeychainWrapper.h"
+#import "BBCiPKeychainWrapper.h"
 
-@implementation JaysonKeychainWrapper
+@implementation BBCiPKeychainWrapper
 
 - (id)initWithIdentifier:(NSString *)identifier accessGroup:(NSString *)accessGroup {
     self = [super init];

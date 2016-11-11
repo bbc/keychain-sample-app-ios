@@ -18,7 +18,7 @@
 		AEF2DEA51DD360890062B0E2 /* KeychainTestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DEA41DD360890062B0E2 /* KeychainTestAppTests.m */; };
 		AEF2DEB11DD361A80062B0E2 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DEB01DD361A80062B0E2 /* KeychainItemWrapper.m */; };
 		AEF2DEB41DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DEB31DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m */; };
-		AEF2DEB81DD4790E0062B0E2 /* JaysonKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DEB71DD4790E0062B0E2 /* JaysonKeychainWrapper.m */; };
+		AEF2DEB81DD4790E0062B0E2 /* BBCiPKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2DEB71DD4790E0062B0E2 /* BBCiPKeychainWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +53,8 @@
 		AEF2DEB21DD362070062B0E2 /* BBCiPCryptoKeyGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCiPCryptoKeyGeneration.h; sourceTree = "<group>"; };
 		AEF2DEB31DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCiPCryptoKeyGeneration.m; sourceTree = "<group>"; };
 		AEF2DEB51DD475830062B0E2 /* Keychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Keychain.h; sourceTree = "<group>"; };
-		AEF2DEB61DD4790E0062B0E2 /* JaysonKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JaysonKeychainWrapper.h; sourceTree = "<group>"; };
-		AEF2DEB71DD4790E0062B0E2 /* JaysonKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JaysonKeychainWrapper.m; sourceTree = "<group>"; };
+		AEF2DEB61DD4790E0062B0E2 /* BBCiPKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCiPKeychainWrapper.h; sourceTree = "<group>"; };
+		AEF2DEB71DD4790E0062B0E2 /* BBCiPKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCiPKeychainWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +110,8 @@
 				AEF2DEB31DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m */,
 				AEF2DE8A1DD360890062B0E2 /* Supporting Files */,
 				AEF2DEB51DD475830062B0E2 /* Keychain.h */,
-				AEF2DEB61DD4790E0062B0E2 /* JaysonKeychainWrapper.h */,
-				AEF2DEB71DD4790E0062B0E2 /* JaysonKeychainWrapper.m */,
+				AEF2DEB61DD4790E0062B0E2 /* BBCiPKeychainWrapper.h */,
+				AEF2DEB71DD4790E0062B0E2 /* BBCiPKeychainWrapper.m */,
 				AE9ED5F91DD4C9D30013ACD5 /* AudioPlayer.h */,
 				AE9ED5FA1DD4C9D30013ACD5 /* AudioPlayer.m */,
 				AE9ED5FD1DD4D0790013ACD5 /* Exotic-birds-chirping.mp3 */,
@@ -253,7 +253,7 @@
 				AEF2DE921DD360890062B0E2 /* ViewController.m in Sources */,
 				AE9ED5FB1DD4C9D30013ACD5 /* AudioPlayer.m in Sources */,
 				AEF2DE8F1DD360890062B0E2 /* AppDelegate.m in Sources */,
-				AEF2DEB81DD4790E0062B0E2 /* JaysonKeychainWrapper.m in Sources */,
+				AEF2DEB81DD4790E0062B0E2 /* BBCiPKeychainWrapper.m in Sources */,
 				AEF2DEB41DD362070062B0E2 /* BBCiPCryptoKeyGeneration.m in Sources */,
 				AEF2DE8C1DD360890062B0E2 /* main.m in Sources */,
 			);

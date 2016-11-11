@@ -9,10 +9,11 @@
 #import "ViewController.h"
 #import "BBCiPCryptoKeyGeneration.h"
 #import "KeychainItemWrapper.h"
-#import "JaysonKeychainWrapper.h"
+#import "BBCiPKeychainWrapper.h"
 #import "AudioPlayer.h"
 
 const size_t kKeyLength = 64;
+const int delayInSeconds = 10;
 NSString * const kKeychainIdentifier = @"uk.co.bbc.KeychainTestApp";
 
 typedef enum : NSUInteger {
@@ -35,7 +36,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     _keychainType = KeychainTypeAppleWrapper;
-    _queue = dispatch_queue_create("bg_queue", NULL);
+    _queue = dispatch_queue_create("uk.co.bbc.KeychainTestApp.bg_queue", NULL);
     [self cleanUp];
 }
 
@@ -66,11 +67,11 @@ typedef enum : NSUInteger {
 }
 
 - (IBAction)addKeyAfterFiveSecondsButtonPressed:(id)sender {
-    [self performSelectorInBackground:@selector(delayedAdd) withObject:nil];
+    [self delayedAdd];
 }
 
 - (IBAction)getKeyAfterFiveSecondsButtonPressed:(id)sender {
-    [self performSelectorInBackground:@selector(delayedGet) withObject:nil];
+    [self delayedGet];
 }
 
 - (IBAction)resetButtonPressed:(id)sender {
@@ -116,14 +117,24 @@ typedef enum : NSUInteger {
 }
 
 - (void)delayedAdd {
-    dispatch_async(_queue, ^{
+    dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(delay, _queue, ^(void){
         
+        OSStatus result = [[self keychain] setObject:_currentKeyData forKey:(__bridge id)kSecValueData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _addKeyResultLabel.text = [NSString stringWithFormat:@"%d", result];
+        });
     });
 }
 
 - (void)delayedGet {
-    dispatch_async(_queue, ^{
+    dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(delay, _queue, ^(void){
         
+        NSData *keyData = [[self keychain] objectForKey:(__bridge id)kSecValueData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _getKeyResultLabel.text = [NSString stringWithFormat:@"%@", keyData];
+        });
     });
 }
 
@@ -131,7 +142,7 @@ typedef enum : NSUInteger {
     if (_keychainType == KeychainTypeAppleWrapper) {
         return [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainIdentifier accessGroup:nil];
     } else {
-        return [[JaysonKeychainWrapper alloc] initWithIdentifier:kKeychainIdentifier accessGroup:nil];
+        return [[BBCiPKeychainWrapper alloc] initWithIdentifier:kKeychainIdentifier accessGroup:nil];
     }
     
     return nil;

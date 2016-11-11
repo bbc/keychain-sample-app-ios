@@ -1,5 +1,5 @@
 //
-//  JaysonKeychainWrapper.h
+//  BBCiPKeychainWrapper.h
 //  KeychainTestApp
 //
 //  Created by Jayson Turner on 10/11/2016.
@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Keychain.h"
 
-@interface JaysonKeychainWrapper : NSObject<Keychain>
+@interface BBCiPKeychainWrapper : NSObject<Keychain>
 
 @end
