@@ -1,6 +1,6 @@
 //
 //  BBCiPKeychainWrapper.m
-//  KeychainTestApp
+//  BBCiPlayer
 //
 //  Created by Jayson Turner on 10/11/2016.
 //  Copyright © 2016 BBC. All rights reserved.
@@ -9,7 +9,7 @@
 #import "BBCiPKeychainWrapper.h"
 
 @interface BBCiPKeychainWrapper ()
-@property (strong) NSString *identifier;
+@property (copy) NSString *identifier;
 @end
 
 @implementation BBCiPKeychainWrapper
@@ -33,8 +33,7 @@
 - (void)resetKeychainAndGetStatus:(OSStatus*)status {
     NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:_identifier];
     
-    if(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr)
-    {
+    if(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr) {
         *status = SecItemDelete((__bridge CFDictionaryRef)keychainItem);
     }
 }
@@ -54,8 +53,7 @@
     
     *status = SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, (CFTypeRef *)&result);
     
-    if(*status == noErr && result)
-    {
+    if(*status == noErr && result) {
         NSDictionary *resultDict = (__bridge_transfer NSDictionary *)result;
         data = resultDict[(__bridge id)kSecValueData];
     }
