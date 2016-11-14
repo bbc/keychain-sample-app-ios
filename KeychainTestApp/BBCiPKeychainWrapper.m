@@ -14,7 +14,7 @@
 
 @implementation BBCiPKeychainWrapper
 
-- (id)initWithIdentifier:(NSString *)identifier accessGroup:(NSString *)accessGroup {
+- (id)initWithIdentifier:(NSString *)identifier {
     self = [super init];
     if (self) {
         _identifier = identifier;
@@ -22,30 +22,27 @@
     return self;
 }
 
-- (OSStatus)setObject:(id)inObject forKey:(id)key {
-    NSData *data = (NSData*)inObject;
-    [self savePasswordForIdentifier:_identifier password:data];
-    return 0;
+- (void)setObject:(id)inObject status:(OSStatus *)status{
+    [self savePasswordForIdentifier:_identifier password:(NSData*)inObject status:status];
 }
 
-- (id)objectForKey:(id)key {
-    return [self passwordForIdentifier:_identifier];
+- (id)objectAndStatus:(OSStatus *)status {
+    return [self passwordForIdentifier:_identifier status:status];
 }
 
-- (void)resetKeychainItem {
+- (void)resetKeychainAndGetStatus:(OSStatus*)status {
     NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:_identifier];
     
     if(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr)
     {
-        OSStatus sts = SecItemDelete((__bridge CFDictionaryRef)keychainItem);
-        NSLog(@"Delete Error Code: %d", (int)sts);
+        *status = SecItemDelete((__bridge CFDictionaryRef)keychainItem);
     }
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (NSData*)passwordForIdentifier:(NSString*)identifier {
+- (NSData*)passwordForIdentifier:(NSString*)identifier status:(OSStatus*)status{
     
     NSData *password = nil;
     NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:identifier];
@@ -55,11 +52,9 @@
     
     CFDictionaryRef result = nil;
     
-    OSStatus sts = SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, (CFTypeRef *)&result);
+    *status = SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, (CFTypeRef *)&result);
     
-    NSLog(@"Find Error Code: %d", (int)sts);
-    
-    if(sts == noErr)
+    if(*status == noErr && result)
     {
         NSDictionary *resultDict = (__bridge_transfer NSDictionary *)result;
         password = resultDict[(__bridge id)kSecValueData];
@@ -68,25 +63,19 @@
     return password;
 }
 
-- (OSStatus)savePasswordForIdentifier:(NSString*)identifier password:(NSData*)password {
-    OSStatus status;
+- (void)savePasswordForIdentifier:(NSString*)identifier password:(NSData*)password status:(OSStatus*)status{
     
     NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:identifier];
     
     if(!(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr)) {
         keychainItem[(__bridge id)kSecValueData] = [[NSData alloc] initWithData:password];
-        
-        status = SecItemAdd((__bridge CFDictionaryRef)keychainItem, NULL);
-        NSLog(@"Add Error Code: %d", (int)status);
+        *status = SecItemAdd((__bridge CFDictionaryRef)keychainItem, NULL);
     } else {
         NSMutableDictionary *attributesToUpdate = [NSMutableDictionary dictionary];
         attributesToUpdate[(__bridge id)kSecValueData] = [[NSData alloc] initWithData:password];;
         
-        status = SecItemUpdate((__bridge CFDictionaryRef)keychainItem, (__bridge CFDictionaryRef)attributesToUpdate);
-        NSLog(@"Update Error Code: %d", (int)status);
+        *status = SecItemUpdate((__bridge CFDictionaryRef)keychainItem, (__bridge CFDictionaryRef)attributesToUpdate);
     }
-    
-    return status;
 }
 
 - (NSMutableDictionary*)createNewEmptyKeychainDictionaryWithIdentifier:(NSString*)identifier {

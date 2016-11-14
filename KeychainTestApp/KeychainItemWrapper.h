@@ -48,21 +48,14 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "Keychain.h"
+#import "BBCiPKeychain.h"
 
 /*
  The KeychainItemWrapper class is an abstraction layer for the iPhone Keychain communication. It is merely a
  simple wrapper to provide a distinct barrier between all the idiosyncracies involved with the Keychain
  CF/NS container objects.
  */
-@interface KeychainItemWrapper : NSObject<Keychain>
+@interface KeychainItemWrapper : NSObject<BBCiPKeychain>
 
-// Designated initializer.
-- (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *)accessGroup;
-- (OSStatus)setObject:(id)inObject forKey:(id)key;
-- (id)objectForKey:(id)key;
-
-// Initializes and resets the default generic keychain item data.
-- (void)resetKeychainItem;
 
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Keychain.h"
+#import "BBCiPKeychain.h"
 
-@interface BBCiPKeychainWrapper : NSObject<Keychain>
+@interface BBCiPKeychainWrapper : NSObject<BBCiPKeychain>
 
 @end

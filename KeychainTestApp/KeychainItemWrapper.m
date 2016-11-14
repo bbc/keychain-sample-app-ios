@@ -95,7 +95,7 @@
     NSMutableDictionary *genericPasswordQuery;	// A placeholder for the generic keychain item query used to locate the item.
 }
 
-- (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup;
+- (id)initWithIdentifier: (NSString *)identifier
 {
     if (self = [super init])
     {
@@ -107,24 +107,6 @@
         [genericPasswordQuery setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
         [genericPasswordQuery setObject:identifier forKey:(__bridge id)kSecAttrGeneric];
         
-        // The keychain access group attribute determines if this item can be shared
-        // amongst multiple apps whose code signing entitlements contain the same keychain access group.
-        if (accessGroup != nil)
-        {
-#if TARGET_IPHONE_SIMULATOR
-            // Ignore the access group if running on the iPhone simulator.
-            //
-            // Apps that are built for the simulator aren't signed, so there's no keychain access group
-            // for the simulator to check. This means that all apps can see all keychain items when run
-            // on the simulator.
-            //
-            // If a SecItem contains an access group attribute, SecItemAdd and SecItemUpdate on the
-            // simulator will return -25243 (errSecNoAccessForItem).
-#else
-            [genericPasswordQuery setObject:accessGroup forKey:(__bridge id)kSecAttrAccessGroup];
-#endif
-        }
-        
         // Use the proper search constants, return only the attributes of the first match.
         [genericPasswordQuery setObject:(__bridge id)kSecMatchLimitOne forKey:(__bridge id)kSecMatchLimit];
         [genericPasswordQuery setObject:(__bridge id)kCFBooleanTrue forKey:(__bridge id)kSecReturnAttributes];
@@ -135,26 +117,13 @@
         
         if (!(SecItemCopyMatching((__bridge CFDictionaryRef)tempQuery, (CFTypeRef *)&outDictionary) == noErr))
         {
+            OSStatus status;
             // Stick these default values into keychain item if nothing found.
-            [self resetKeychainItem];
+            [self resetKeychainAndGetStatus:&status];
             
             // Add the generic attribute and the keychain access group.
             [keychainItemData setObject:identifier forKey:(__bridge id)kSecAttrGeneric];
-            if (accessGroup != nil)
-            {
-#if TARGET_IPHONE_SIMULATOR
-                // Ignore the access group if running on the iPhone simulator.
-                //
-                // Apps that are built for the simulator aren't signed, so there's no keychain access group
-                // for the simulator to check. This means that all apps can see all keychain items when run
-                // on the simulator.
-                //
-                // If a SecItem contains an access group attribute, SecItemAdd and SecItemUpdate on the
-                // simulator will return -25243 (errSecNoAccessForItem).
-#else
-                [keychainItemData setObject:accessGroup forKey:(__bridge id)kSecAttrAccessGroup];
-#endif
-            }
+        
         }
         else
         {
@@ -167,28 +136,25 @@
     return self;
 }
 
-- (OSStatus)setObject:(id)inObject forKey:(id)key
+- (void)setObject:(id)inObject status:(OSStatus *)status
 {
     OSStatus result;
     result = 0;
     
-    if (inObject == nil) return result;
-    id currentObject = [keychainItemData objectForKey:key];
+    id currentObject = [keychainItemData objectForKey:(__bridge id)kSecValueData];
     if (![currentObject isEqual:inObject])
     {
-        [keychainItemData setObject:inObject forKey:key];
+        [keychainItemData setObject:inObject forKey:(__bridge id)kSecValueData];
         result = [self writeToKeychain];
     }
-    
-    return result;
 }
 
-- (id)objectForKey:(id)key
+- (id)objectAndStatus:(OSStatus *)status
 {
-    return [keychainItemData objectForKey:key];
+    return [keychainItemData objectForKey:(__bridge id)kSecValueData];
 }
 
-- (void)resetKeychainItem
+- (void)resetKeychainAndGetStatus:(OSStatus *)status
 {
     if (!keychainItemData)
     {

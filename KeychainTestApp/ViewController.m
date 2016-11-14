@@ -14,7 +14,7 @@
 
 const size_t kKeyLength = 64;
 const int delayInSeconds = 10;
-NSString * const kKeychainIdentifier = @"uk.co.bbc.KeychainTestApp3";
+NSString * const kKeychainIdentifier = @"uk.co.bbc.KeychainTestApp";
 
 typedef enum : NSUInteger {
     KeychainTypeAppleWrapper = 0,
@@ -75,7 +75,8 @@ typedef enum : NSUInteger {
 }
 
 - (IBAction)resetButtonPressed:(id)sender {
-    [[self keychain] resetKeychainItem];
+    OSStatus result = -1;
+    [[self keychain] resetKeychainAndGetStatus:&result];
 }
 
 - (IBAction)cleanButtonPressed:(id)sender {
@@ -100,7 +101,8 @@ typedef enum : NSUInteger {
 
 - (void)add {
     dispatch_async(_queue, ^{
-        OSStatus result = [[self keychain] setObject:_currentKeyData forKey:(__bridge id)kSecValueData];
+        OSStatus result = -1;
+        [[self keychain] setObject:_currentKeyData status:&result];
         dispatch_async(dispatch_get_main_queue(), ^{
             _addKeyResultLabel.text = [NSString stringWithFormat:@"%d", result];
         });
@@ -109,7 +111,8 @@ typedef enum : NSUInteger {
 
 - (void)get {
     dispatch_async(_queue, ^{
-        NSData *keyData = [[self keychain] objectForKey:(__bridge id)kSecValueData];
+        OSStatus result = -1;
+        NSData *keyData = [[self keychain] objectAndStatus:&result];
         dispatch_async(dispatch_get_main_queue(), ^{
             _getKeyResultLabel.text = [NSString stringWithFormat:@"%@", keyData];
         });
@@ -119,8 +122,8 @@ typedef enum : NSUInteger {
 - (void)delayedAdd {
     dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(delay, _queue, ^(void){
-        
-        OSStatus result = [[self keychain] setObject:_currentKeyData forKey:(__bridge id)kSecValueData];
+        OSStatus result = -1;
+        [[self keychain] setObject:_currentKeyData status:&result];
         dispatch_async(dispatch_get_main_queue(), ^{
             _addKeyResultLabel.text = [NSString stringWithFormat:@"%d", result];
         });
@@ -131,18 +134,19 @@ typedef enum : NSUInteger {
     dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(delay, _queue, ^(void){
         
-        NSData *keyData = [[self keychain] objectForKey:(__bridge id)kSecValueData];
+        OSStatus result = -1;
+        NSData *keyData = [[self keychain] objectAndStatus:&result];
         dispatch_async(dispatch_get_main_queue(), ^{
             _getKeyResultLabel.text = [NSString stringWithFormat:@"%@", keyData];
         });
     });
 }
 
-- (id<Keychain>)keychain {
+- (id<BBCiPKeychain>)keychain {
     if (_keychainType == KeychainTypeAppleWrapper) {
-        return [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainIdentifier accessGroup:nil];
+        return [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainIdentifier];
     } else {
-        return [[BBCiPKeychainWrapper alloc] initWithIdentifier:kKeychainIdentifier accessGroup:nil];
+        return [[BBCiPKeychainWrapper alloc] initWithIdentifier:kKeychainIdentifier];
     }
     
     return nil;
