@@ -22,12 +22,12 @@
     return self;
 }
 
-- (void)setObject:(id)inObject status:(OSStatus *)status{
-    [self savePasswordForIdentifier:_identifier password:(NSData*)inObject status:status];
+- (void)setData:(NSData*)data status:(OSStatus *)status{
+    [self saveDataForIdentifier:_identifier data:data status:status];
 }
 
-- (id)objectAndStatus:(OSStatus *)status {
-    return [self passwordForIdentifier:_identifier status:status];
+- (NSData*)dataAndStatus:(OSStatus *)status {
+    return [self dataForIdentifier:_identifier status:status];
 }
 
 - (void)resetKeychainAndGetStatus:(OSStatus*)status {
@@ -42,7 +42,7 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (NSData*)passwordForIdentifier:(NSString*)identifier status:(OSStatus*)status{
+- (NSData*)dataForIdentifier:(NSString*)identifier status:(OSStatus*)status{
     
     NSData *password = nil;
     NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:identifier];
@@ -63,16 +63,16 @@
     return password;
 }
 
-- (void)savePasswordForIdentifier:(NSString*)identifier password:(NSData*)password status:(OSStatus*)status{
+- (void)saveDataForIdentifier:(NSString*)identifier data:(NSData*)data status:(OSStatus*)status{
     
     NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:identifier];
     
     if(!(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr)) {
-        keychainItem[(__bridge id)kSecValueData] = [[NSData alloc] initWithData:password];
+        keychainItem[(__bridge id)kSecValueData] = [[NSData alloc] initWithData:data];
         *status = SecItemAdd((__bridge CFDictionaryRef)keychainItem, NULL);
     } else {
         NSMutableDictionary *attributesToUpdate = [NSMutableDictionary dictionary];
-        attributesToUpdate[(__bridge id)kSecValueData] = [[NSData alloc] initWithData:password];;
+        attributesToUpdate[(__bridge id)kSecValueData] = [[NSData alloc] initWithData:data];;
         
         *status = SecItemUpdate((__bridge CFDictionaryRef)keychainItem, (__bridge CFDictionaryRef)attributesToUpdate);
     }

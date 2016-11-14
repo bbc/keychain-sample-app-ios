@@ -11,8 +11,8 @@
 @protocol BBCiPKeychain <NSObject>
 
 - (instancetype)initWithIdentifier:(NSString *)identifier;
-- (void)setObject:(id)inObject status:(OSStatus*)status;
-- (id)objectAndStatus:(OSStatus*)status;
+- (void)setData:(NSData*)data status:(OSStatus*)status;
+- (NSData*)dataAndStatus:(OSStatus*)status;
 - (void)resetKeychainAndGetStatus:(OSStatus*)status;
 
 @end

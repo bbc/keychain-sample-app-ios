@@ -102,7 +102,7 @@ typedef enum : NSUInteger {
 - (void)add {
     dispatch_async(_queue, ^{
         OSStatus result = -1;
-        [[self keychain] setObject:_currentKeyData status:&result];
+        [[self keychain] setData:_currentKeyData status:&result];
         dispatch_async(dispatch_get_main_queue(), ^{
             _addKeyResultLabel.text = [NSString stringWithFormat:@"%d", result];
         });
@@ -112,7 +112,7 @@ typedef enum : NSUInteger {
 - (void)get {
     dispatch_async(_queue, ^{
         OSStatus result = -1;
-        NSData *keyData = [[self keychain] objectAndStatus:&result];
+        NSData *keyData = [[self keychain] dataAndStatus:&result];
         dispatch_async(dispatch_get_main_queue(), ^{
             _getKeyResultLabel.text = [NSString stringWithFormat:@"%@", keyData];
         });
@@ -123,7 +123,7 @@ typedef enum : NSUInteger {
     dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(delay, _queue, ^(void){
         OSStatus result = -1;
-        [[self keychain] setObject:_currentKeyData status:&result];
+        [[self keychain] setData:_currentKeyData status:&result];
         dispatch_async(dispatch_get_main_queue(), ^{
             _addKeyResultLabel.text = [NSString stringWithFormat:@"%d", result];
         });
@@ -135,7 +135,7 @@ typedef enum : NSUInteger {
     dispatch_after(delay, _queue, ^(void){
         
         OSStatus result = -1;
-        NSData *keyData = [[self keychain] objectAndStatus:&result];
+        NSData *keyData = [[self keychain] dataAndStatus:&result];
         dispatch_async(dispatch_get_main_queue(), ^{
             _getKeyResultLabel.text = [NSString stringWithFormat:@"%@", keyData];
         });

@@ -136,20 +136,20 @@
     return self;
 }
 
-- (void)setObject:(id)inObject status:(OSStatus *)status
+- (void)setData:(id)data status:(OSStatus *)status
 {
     OSStatus result;
     result = 0;
     
     id currentObject = [keychainItemData objectForKey:(__bridge id)kSecValueData];
-    if (![currentObject isEqual:inObject])
+    if (![currentObject isEqual:data])
     {
-        [keychainItemData setObject:inObject forKey:(__bridge id)kSecValueData];
+        [keychainItemData setObject:data forKey:(__bridge id)kSecValueData];
         result = [self writeToKeychain];
     }
 }
 
-- (id)objectAndStatus:(OSStatus *)status
+- (id)dataAndStatus:(OSStatus *)status
 {
     return [keychainItemData objectForKey:(__bridge id)kSecValueData];
 }
