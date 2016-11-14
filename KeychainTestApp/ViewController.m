@@ -14,7 +14,7 @@
 
 const size_t kKeyLength = 64;
 const int delayInSeconds = 10;
-NSString * const kKeychainIdentifier = @"uk.co.bbc.KeychainTestApp";
+NSString * const kKeychainIdentifier = @"uk.co.bbc.KeychainTestApp3";
 
 typedef enum : NSUInteger {
     KeychainTypeAppleWrapper = 0,
