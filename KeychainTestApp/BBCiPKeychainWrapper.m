@@ -44,7 +44,7 @@
 
 - (NSData*)dataForIdentifier:(NSString*)identifier status:(OSStatus*)status{
     
-    NSData *password = nil;
+    NSData *data = nil;
     NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:identifier];
     
     keychainItem[(__bridge id)kSecReturnData] = (__bridge id)kCFBooleanTrue;
@@ -57,10 +57,10 @@
     if(*status == noErr && result)
     {
         NSDictionary *resultDict = (__bridge_transfer NSDictionary *)result;
-        password = resultDict[(__bridge id)kSecValueData];
+        data = resultDict[(__bridge id)kSecValueData];
     }
     
-    return password;
+    return data;
 }
 
 - (void)saveDataForIdentifier:(NSString*)identifier data:(NSData*)data status:(OSStatus*)status{
