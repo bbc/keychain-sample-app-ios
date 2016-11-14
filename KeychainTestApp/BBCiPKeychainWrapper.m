@@ -34,7 +34,13 @@
 }
 
 - (void)resetKeychainItem {
+    NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:_identifier];
     
+    if(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr)
+    {
+        OSStatus sts = SecItemDelete((__bridge CFDictionaryRef)keychainItem);
+        NSLog(@"Delete Error Code: %d", (int)sts);
+    }
 }
 
 #pragma mark -
@@ -43,20 +49,16 @@
 - (NSString*)passwordForIdentifier:(NSString*)identifier {
     
     NSString *password = nil;
-    NSMutableDictionary *keychainItem = [NSMutableDictionary dictionary];
+    NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:identifier];
     
-    keychainItem[(__bridge id)kSecClass] = (__bridge id)kSecClassGenericPassword;
-    keychainItem[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleWhenUnlocked;
-    keychainItem[(__bridge id)kSecAttrGeneric] = identifier;
-    
-    keychainItem[(__bridge id)kSecReturnData] = (__bridge id)kCFBooleanTrue;
-    keychainItem[(__bridge id)kSecReturnAttributes] = (__bridge id)kCFBooleanTrue;
+//    keychainItem[(__bridge id)kSecReturnData] = (__bridge id)kCFBooleanTrue;
+//    keychainItem[(__bridge id)kSecReturnAttributes] = (__bridge id)kCFBooleanTrue;
     
     CFDictionaryRef result = nil;
     
     OSStatus sts = SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, (CFTypeRef *)&result);
     
-    NSLog(@"Error Code: %d", (int)sts);
+    NSLog(@"Find Error Code: %d", (int)sts);
     
     if(sts == noErr)
     {
@@ -68,23 +70,37 @@
     return password;
 }
 
-- (OSStatus)savePasswordForIdentifier:(NSString*)identifier password:(NSString*)item {
+- (OSStatus)savePasswordForIdentifier:(NSString*)identifier password:(NSString*)password {
     OSStatus status;
     
+    NSMutableDictionary *keychainItem = [self createNewEmptyKeychainDictionaryWithIdentifier:identifier];
+    
+    if(!(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr)) {
+        keychainItem[(__bridge id)kSecValueData] = [password dataUsingEncoding:NSUTF8StringEncoding];
+        
+        status = SecItemAdd((__bridge CFDictionaryRef)keychainItem, NULL);
+        NSLog(@"Add Error Code: %d", (int)status);
+    } else {
+        NSMutableDictionary *attributesToUpdate = [NSMutableDictionary dictionary];
+        attributesToUpdate[(__bridge id)kSecValueData] = [password dataUsingEncoding:NSUTF8StringEncoding];
+        
+        status = SecItemUpdate((__bridge CFDictionaryRef)keychainItem, (__bridge CFDictionaryRef)attributesToUpdate);
+        NSLog(@"Update Error Code: %d", (int)status);
+    }
+    
+    return status;
+}
+
+- (NSMutableDictionary*)createNewEmptyKeychainDictionaryWithIdentifier:(NSString*)identifier {
     NSMutableDictionary *keychainItem = [NSMutableDictionary dictionary];
     
     keychainItem[(__bridge id)kSecClass] = (__bridge id)kSecClassGenericPassword;
     keychainItem[(__bridge id)kSecAttrAccessible] = (__bridge id)kSecAttrAccessibleWhenUnlocked;
-    keychainItem[(__bridge id)kSecAttrGeneric] = identifier;
-    
-    if(!(SecItemCopyMatching((__bridge CFDictionaryRef)keychainItem, NULL) == noErr)) {
-        keychainItem[(__bridge id)kSecValueData] = [@"YO" dataUsingEncoding:NSUTF8StringEncoding];
-        
-        status = SecItemAdd((__bridge CFDictionaryRef)keychainItem, NULL);
-        NSLog(@"Error Code: %d", (int)status);
-    }
-    
-    return status;
+    keychainItem[(__bridge id)kSecAttrService] = [identifier dataUsingEncoding:NSUTF8StringEncoding];
+    keychainItem[(__bridge id)kSecAttrAccount] = [identifier dataUsingEncoding:NSUTF8StringEncoding];
+    keychainItem[(__bridge id)kSecAttrGeneric] = [identifier dataUsingEncoding:NSUTF8StringEncoding];
+
+    return keychainItem;
 }
 
 @end
